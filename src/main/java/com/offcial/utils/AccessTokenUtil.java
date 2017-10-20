@@ -2,11 +2,7 @@ package com.offcial.utils;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.offcial.dao.AccessTokenDao;
-import com.offcial.dto.TokenDto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Service;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -20,9 +16,6 @@ import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
-import java.time.LocalDateTime;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 /**
@@ -31,14 +24,10 @@ import java.util.TimerTask;
  * @author Zza
  * @date 2017-10-19 15:52
  */
-@Controller
-@RequestMapping("/")
+@Service
 public class AccessTokenUtil {
 
-    @Autowired
-    private AccessTokenDao accessTokenDao;
-
-    private String getAccessToken() throws IOException, KeyManagementException, NoSuchProviderException, NoSuchAlgorithmException {
+    public String getAccessToken() throws IOException, KeyManagementException, NoSuchProviderException, NoSuchAlgorithmException {
         String tokenUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx08d7c9d49f79e475&secret=7b16598dcdf328a6e9072699f7c87bfb";
         //建立连接
         URL url = new URL(tokenUrl);
@@ -72,28 +61,6 @@ public class AccessTokenUtil {
         //输出返回结果
         JSONObject jsonObject = JSONObject.parseObject(buffer.toString());
         return jsonObject.getString("access_token");
-    }
-
-    /**
-     * 每1.5小时获取个token并存库
-     */
-    @RequestMapping("/time")
-    public void insertToken() {
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    TokenDto tokenDto = new TokenDto();
-                    tokenDto.setAccessToken(getAccessToken());
-                    tokenDto.setTime(LocalDateTime.now().toString());
-                    accessTokenDao.save(tokenDto);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        timer.schedule(task, 1000, 7200000);
     }
 
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 /**
@@ -78,7 +79,7 @@ public class MessageService {
             }
             // 图片消息
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) {
-                imageUtil.saveImageToDisk(accessTokenDao.findTopByOrderByTimeDesc().getAccessToken(), MediaId, "66", "");
+                imageUtil.saveImageToDisk(accessTokenDao.findTopByOrderByTimeDesc().getAccessToken(), MediaId, fromUserName + LocalDateTime.now(), "E:/");
                 respContent = "您发送的是图片消息！";
             }
             // 语音消息
