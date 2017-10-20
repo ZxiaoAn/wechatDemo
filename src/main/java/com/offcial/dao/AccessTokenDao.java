@@ -25,14 +25,6 @@ public interface AccessTokenDao extends JpaRepository<TokenDto, Long> {
     TokenDto save(TokenDto tokenDto);
 
     /**
-     * 获取最新一条access
-     *
-     * @return
-     */
-    @Override
-    List<TokenDto> findAll();
-
-    /**
      * 获取最新一条token
      *
      * @return

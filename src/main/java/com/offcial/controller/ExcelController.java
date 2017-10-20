@@ -40,7 +40,7 @@ public class ExcelController {
         String fileName = type + ".xls";
         fileName = URLEncoder.encode(fileName, "UTF-8");
         resp.addHeader("Content-Disposition", "attachment;filename=" + fileName);
-        HSSFSheet sheet = wb.createSheet("微信一周信息汇总记录");
+        HSSFSheet sheet = wb.createSheet("微信两周内信息汇总记录");
         sheet.setDefaultRowHeight((short) (2 * 256));
         sheet.setColumnWidth(0, 50 * 160);
         HSSFFont font = wb.createFont();
@@ -68,7 +68,7 @@ public class ExcelController {
         cell = row.createCell(4);
         cell.setCellStyle(style);
         // 判断要下载的类型文件
-        String timeS = LocalDate.now().minusWeeks(1).toString();
+        String timeS = LocalDate.now().minusWeeks(2).toString();
         String timeE = LocalDate.now().toString();
         //房屋
         if ("house".equals(type)) {

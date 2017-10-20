@@ -25,7 +25,7 @@ public class SchedulingUtil {
     private AccessTokenUtil accessTokenUtil;
 
     // 每2小时执行一次
-    @Scheduled(cron = "0 0 0/2 * * ? *")
+    @Scheduled(cron = "0 0 0/2 * * ?")
     public void scheduler() {
         try {
             TokenDto tokenDto = new TokenDto();
