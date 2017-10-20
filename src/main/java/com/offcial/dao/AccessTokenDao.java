@@ -4,8 +4,6 @@ package com.offcial.dao;
 import com.offcial.dto.TokenDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
 /**
  * 将Accessage_Token保存起来
  *
