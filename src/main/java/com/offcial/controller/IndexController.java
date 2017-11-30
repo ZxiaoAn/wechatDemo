@@ -13,10 +13,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class IndexController {
 
-    //返回首页
+    //首页 xmlns:th="http://www.thymeleaf.org"
     @RequestMapping("/index")
     public String index() {
         return "index";
+    }
+
+    //往期微信推送
+    @RequestMapping("/WeChatHistory")
+    public String WeChatHistory() {
+        return "WeChatHistory";
+    }
+
+    //web
+    @RequestMapping("/web")
+    public String web() {
+        return "web";
     }
 
 }
