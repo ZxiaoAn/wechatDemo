@@ -33,7 +33,7 @@ public class ImageUtil {
             HttpURLConnection http = (HttpURLConnection) urlGet.openConnection();
             // 必须是get方式请求
             http.setRequestMethod("GET");
-            http.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            http.setRequestProperty("Content-Type", "application/pages-www-form-urlencoded");
             http.setDoOutput(true);
             http.setDoInput(true);
             // 连接超时30秒
