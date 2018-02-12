@@ -13,11 +13,11 @@ import java.util.Arrays;
  */
 public class CheckUtil {
 
-    private static final String token = "zza";
+    private static final String TOKEN = "zza";
 
     public static boolean checkSignature(String signature, String timestamp, String nonce) {
 
-        String[] arr = new String[]{token, timestamp, nonce};
+        String[] arr = new String[]{TOKEN, timestamp, nonce};
         Arrays.sort(arr);
         StringBuilder content = new StringBuilder();
         for (int i = 0; i < arr.length; i++) {
